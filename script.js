@@ -105,4 +105,21 @@ window.addEventListener('resize', () => {
     }
     if (e.key === 'Escape') wrap.classList.remove('open');
   });
-          
+  
+  $(function () {
+  let top = $("#top");
+  let topH = top.height();
+  let header = $("#header");
+  let scrollPos = $(window).scrollTop();
+
+  $(window).on("scroll load", function () {
+    scrollPos = $(this).scrollTop();
+    if (scrollPos > topH) {
+      header.addClass("fixed")
+    }
+    else {
+      header.removeClass("fixed");
+    }
+    console.log(scrollPos);
+  });
+});

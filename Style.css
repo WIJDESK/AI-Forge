@@ -29,6 +29,12 @@ img{
 header{
   background-color: #110605;
 }
+.header.fixed{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
 .conteiner{
   width: 1200px;
   margin: 0 auto;
