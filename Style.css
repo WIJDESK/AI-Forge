@@ -7,7 +7,9 @@ body{
   margin: 0;
   font-family: "Inter", sans-serif;
 }
-
+.conteiner, .screan_1_conteiner, .screan_2_container, .screan_3_container, .screan_4_container, .screan_5_container, .screan_6_container, .footer_container, .dop_box{
+  z-index: -1;
+}
 *,
 *::before,
 *::after{
