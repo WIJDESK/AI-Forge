@@ -38,6 +38,15 @@ header{
   left: 0;
   z-index: 10;
 }
+.header-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.header-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
 .conteiner{
   width: 1200px;
   margin: 0 auto;
@@ -1154,13 +1163,3 @@ hr{
   width: 45%;
 }
 /*other-------------------------------------------------------------------------------------*/
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }

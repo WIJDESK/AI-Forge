@@ -122,19 +122,10 @@ window.addEventListener('resize', () => {
     }
     console.log(scrollPos);
   });
+
+  header.addClass("header-hidden");
+  setTimeout(function () {
+    header.addClass("header-visible");
+  }, 100);
 });
 
-  const revealEls = document.querySelectorAll('.reveal');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // animate once
-      }
-    });
-  }, {
-    threshold: 0.15 // trigger when 15% of element is visible
-  });
-
-  revealEls.forEach(el => observer.observe(el));
