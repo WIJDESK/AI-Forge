@@ -112,11 +112,6 @@ window.addEventListener('resize', () => {
   let header = $("#header");
   let scrollPos = $(window).scrollTop();
 
-  header.addClass("header-hidden");
-  setTimeout(function () {
-    header.addClass("header-visible");
-  }, 100);
-
   $(window).on("scroll load", function () {
     scrollPos = $(this).scrollTop();
     if (scrollPos > topH) {
@@ -129,3 +124,38 @@ window.addEventListener('resize', () => {
   });
 });
 
+function revealFromCenter(el, duration = 1200, delay = 200) {
+  const startTime = performance.now() + delay;
+
+  // easeOutExpo-ish easing for a smooth, natural deceleration
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animate(now) {
+    const elapsed = now - startTime;
+
+    if (elapsed < 0) {
+      requestAnimationFrame(animate);
+      return;
+    }
+
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = easeOutCubic(progress);
+
+    const inset = 50 - eased * 50; // goes from 50% -> 0%
+    el.style.clipPath = `inset(0 ${inset}% 0 ${inset}%)`;
+    el.style.opacity = Math.min(progress * 3, 1); // fades in fast during first third
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const title = document.getElementById("titleText");
+  revealFromCenter(title);
+});
