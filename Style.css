@@ -30,6 +30,7 @@ img{
 
 header{
   background-color: #110605;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
 }
 .header.fixed{
   position: fixed;
