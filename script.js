@@ -112,6 +112,11 @@ window.addEventListener('resize', () => {
   let header = $("#header");
   let scrollPos = $(window).scrollTop();
 
+  header.addClass("header-hidden");
+  setTimeout(function () {
+    header.addClass("header-visible");
+  }, 100);
+
   $(window).on("scroll load", function () {
     scrollPos = $(this).scrollTop();
     if (scrollPos > topH) {
@@ -122,10 +127,5 @@ window.addEventListener('resize', () => {
     }
     console.log(scrollPos);
   });
-
-  header.addClass("header-hidden");
-  setTimeout(function () {
-    header.addClass("header-visible");
-  }, 100);
 });
 
