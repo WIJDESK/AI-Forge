@@ -127,6 +127,7 @@ window.addEventListener('resize', () => {
 function revealFromCenter(el, duration = 1200, delay = 200) {
   const startTime = performance.now() + delay;
 
+  // easeOutExpo-ish easing for a smooth, natural deceleration
   function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
   }
@@ -142,9 +143,9 @@ function revealFromCenter(el, duration = 1200, delay = 200) {
     const progress = Math.min(elapsed / duration, 1);
     const eased = easeOutCubic(progress);
 
-    const inset = 50 - eased * 50;
+    const inset = 50 - eased * 50; // goes from 50% -> 0%
     el.style.clipPath = `inset(0 ${inset}% 0 ${inset}%)`;
-    el.style.opacity = Math.min(progress * 3, 1);
+    el.style.opacity = Math.min(progress * 3, 1); // fades in fast during first third
 
     if (progress < 1) {
       requestAnimationFrame(animate);
@@ -156,17 +157,5 @@ function revealFromCenter(el, duration = 1200, delay = 200) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const title = document.getElementById("titleText");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        revealFromCenter(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.3
-  });
-
-  observer.observe(title);
+  revealFromCenter(title);
 });
