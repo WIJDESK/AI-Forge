@@ -155,7 +155,7 @@ function revealFromCenter(el, duration = 1200, delay = 200) {
   requestAnimationFrame(animate);
 }
 
-document.IntersectionObserver("DOMContentLoaded", function () {
+document.addEventListener("IntersectionObserver", function () {
   const title = document.getElementById("titleText");
   revealFromCenter(title);
 });
