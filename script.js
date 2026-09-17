@@ -159,3 +159,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const title = document.getElementById("titleText");
   revealFromCenter(title);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("scrollTopBtn");
+  const top = document.getElementById("top");
+  const topH = top.offsetHeight;
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > topH) {
+      btn.classList.add("show");
+    } else {
+      btn.classList.remove("show");
+    }
+  });
+
+  btn.addEventListener("click", function () {
+    top.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
